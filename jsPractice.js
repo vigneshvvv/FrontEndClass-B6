@@ -169,8 +169,59 @@ let sortedName = userDetails.filter((e) => e.age > 18).map((e) => e.name);
 console.log(sortedName);
 
 const loadh1Tag = () => {
+    const name = "vignesh"
     const data = document.getElementById("h1sample");
     const tag = document.createElement("h1");
-    tag.textContent = "Welcome to JS testing";
+    tag.textContent = `Welcome to JS testing ${name}`;
     data.append(tag);
+}
+
+
+const loadUlData = () => {
+    const option1 = "Home";
+    const dataa = document.getElementById("h1sample");
+    // const ulData = document.createElement("ul");
+    // const list = document.createElement("li");
+    // list.textContent = "option1";
+    // const list1 = document.createElement("li");
+    // list1.textContent = "option2";
+    // const list2 = document.createElement("li");
+    // list2.textContent = "option3";
+    // ulData.append(list);
+    // ulData.append(list1);
+    // ulData.append(list2);
+    // dataa.append(ulData);
+
+    dataa.innerHTML = `<ul>
+    <li>${option1}</li>
+    <li>option2</li>
+    <li>option3</li>
+    </ul>    
+    `
+
+
+}
+
+const loadTableData = () => {
+    const dataa = document.getElementById("h1sample");
+    const tab = document.createElement("table");
+    const th = document.createElement("thead");
+    const h1s = document.createElement("th")
+    h1s.textContent = "s.no"
+       const h2s = document.createElement("th")
+    h2s.textContent = "Name"
+    const td = document.createElement("tbody")
+    const d1s = document.createElement("td");
+    d1s.textContent = 1
+    const d2s = document.createElement("td");
+    d2s.textContent = "vignesh"
+    td.append(d1s);
+    td.append(d2s);
+    th.append(h1s);
+    th.append(h2s);
+    tab.append(th)
+    tab.append(td)
+    dataa.append(tab);
+
+
 }
