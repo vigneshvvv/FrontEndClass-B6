@@ -11,18 +11,21 @@ async function fetchData(){
     .then((e) => e.json()).then((data) => console.log(data))
 }
 
+let data;
+
 function fethDataNew(){
     const result = fetch("https://dummyjson.com/users")
     .then((e) => e.json())
-    // .then((output) => output.users)
     .then((d) => {
+        data = d.users;
         const row = d.users.map(user => 
             `<tr>
             <td>${user.id}</td>
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
             <td>${user.email}</td>
-            <td><button type="button" class="btn btn-primary">Edit</button><button type="button" class="btn btn-primary">Delete</button></td>
+            <td><button type='button" class="btn btn-primary" onclick="editData(${user.id})">Edit</button>
+            <button type="button" class="btn btn-primary">Delete</button></td>
             </tr>`
         ).join("");
 
@@ -30,6 +33,18 @@ function fethDataNew(){
     });
 
     console.log(result);
+}
+
+
+
+function editData(event){
+    console.log(event);
+    const filtered = data.find((e) => e.id === event);
+    console.log(filtered);
+    document.getElementById("firstName").value = filtered.firstName;
+    document.getElementById("lastName").value = filtered.lastName;
+    document.getElementById("email").value = filtered.email;
+    document.getElementById("editDialogue").showModal();
 }
 
 // GET -> value fetch
