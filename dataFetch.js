@@ -36,17 +36,44 @@ function fethDataNew(){
 }
 
 
-
+let  currentUser = 0
 function editData(event){
     console.log(event);
     const filtered = data.find((e) => e.id === event);
     console.log(filtered);
+    currentUser = filtered.id;
     document.getElementById("firstName").value = filtered.firstName;
     document.getElementById("lastName").value = filtered.lastName;
     document.getElementById("email").value = filtered.email;
     document.getElementById("editDialogue").showModal();
 }
+function saveUser(){
+    const updatedUser = {
+        id: currentUser,
+        firstName: document.getElementById("firstName").value,
+        lastName: document.getElementById("lastName").value
+    }
+    console.log(updatedUser);
 
+    fetch("https://dummyjson.com/users/add", {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedUser)
+    }).then(response => response.json()).then(data => console.log(data))
+    document.getElementById("editDialogue").close();
+}
+
+const toastTrigger = document.getElementById('liveToastBtn')
+const toastLiveExample = document.getElementById('liveToast')
+
+if (toastTrigger) {
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+  toastTrigger.addEventListener('click', () => {
+    toastBootstrap.show()
+  })
+}
 // GET -> value fetch
 // POST ->  insert opearation
 // PUT -> edit 
